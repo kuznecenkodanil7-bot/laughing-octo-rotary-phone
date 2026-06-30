@@ -22,13 +22,13 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
+      - name: Set up Gradle 9.2.0
+        uses: gradle/actions/setup-gradle@v6
         with:
-          gradle-version: 8.14.3
+          gradle-version: '9.2.0'
 
       - name: Build mod
-        run: gradle build
+        run: gradle build --no-daemon --stacktrace
 
       - name: Upload mod jar
         uses: actions/upload-artifact@v4
