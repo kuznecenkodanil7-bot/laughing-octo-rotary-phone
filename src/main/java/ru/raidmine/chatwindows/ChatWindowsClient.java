@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public class ChatWindowsClient implements ClientModInitializer {
@@ -22,7 +23,7 @@ public class ChatWindowsClient implements ClientModInitializer {
                 "key.chatwindows.editor",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_RIGHT_SHIFT,
-                "key.categories.chatwindows"
+                new KeyBinding.Category(Identifier.of("chatwindows", "main"))
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {

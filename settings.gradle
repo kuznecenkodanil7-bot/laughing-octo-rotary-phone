@@ -6,10 +6,8 @@ pluginManagement {
     }
 }
 
-// ВАЖНО:
-// Нельзя ставить RepositoriesMode.FAIL_ON_PROJECT_REPOS для Fabric Loom 1.14,
-// потому что Loom сам добавляет служебный репозиторий LoomLocalRemappedMods.
-// При FAIL_ON_PROJECT_REPOS Gradle падает ещё на этапе конфигурации.
+// Fabric Loom 1.14 добавляет свой служебный репозиторий LoomLocalRemappedMods.
+// Поэтому нельзя использовать FAIL_ON_PROJECT_REPOS — Gradle упадет на конфигурации.
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {

@@ -1,5 +1,6 @@
 package ru.raidmine.chatwindows;
 
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -152,10 +153,13 @@ public class ChatWindowsScreen extends Screen {
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (super.mouseClicked(mouseX, mouseY, button)) {
+    public boolean mouseClicked(Click click, boolean doubled) {
+        if (super.mouseClicked(click, doubled)) {
             return true;
         }
+
+        double mouseX = click.x();
+        double mouseY = click.y();
 
         List<ChatWindow> windows = ChatWindowsClient.MANAGER.windows();
         for (int i = windows.size() - 1; i >= 0; i--) {
@@ -187,7 +191,10 @@ public class ChatWindowsScreen extends Screen {
     }
 
     @Override
-    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
+    public boolean mouseDragged(Click click, double offsetX, double offsetY) {
+        double mouseX = click.x();
+        double mouseY = click.y();
+
         if (dragging != null) {
             dragging.x = clamp((int) (mouseX - dragOffsetX), PANEL_WIDTH + 2, width - 30);
             dragging.y = clamp((int) (mouseY - dragOffsetY), 0, height - 30);
@@ -198,18 +205,18 @@ public class ChatWindowsScreen extends Screen {
             resizing.height = Math.max(70, (int) mouseY - resizing.y);
             return true;
         }
-        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
+        return super.mouseDragged(click, offsetX, offsetY);
     }
 
     @Override
-    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+    public boolean mouseReleased(Click click) {
         if (dragging != null || resizing != null) {
             dragging = null;
             resizing = null;
             ChatWindowsClient.MANAGER.save();
             return true;
         }
-        return super.mouseReleased(mouseX, mouseY, button);
+        return super.mouseReleased(click);
     }
 
     @Override

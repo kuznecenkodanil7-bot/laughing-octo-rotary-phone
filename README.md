@@ -36,7 +36,7 @@
 
 ## Как собрать локально
 
-Нужны Java 21 и Gradle 8.14+.
+Нужны Java 21 и Gradle 9.2+.
 
 ```bash
 gradle build --no-daemon --stacktrace
