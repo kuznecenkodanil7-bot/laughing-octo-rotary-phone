@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "chatwindows",
+  "version": "${version}",
+  "name": "Chat Windows",
+  "description": "Отдельные перемещаемые окна чата с фильтрацией по ключевым словам.",
+  "authors": ["RaidMine / NAUZER"],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "ru.raidmine.chatwindows.ChatWindowsClient"
+    ]
+  },
+  "mixins": [
+    "chatwindows.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.1",
+    "minecraft": "1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
